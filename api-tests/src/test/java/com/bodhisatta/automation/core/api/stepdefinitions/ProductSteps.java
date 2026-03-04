@@ -21,6 +21,8 @@ public class ProductSteps extends BaseAPI {
         response= RestAssured.given().baseUri(ConfigManager.get("base.url"))
                 .header("Content-Type", "application/json").when().get(endpoint).then().extract()
                         .response();
+        System.out.println("ENV: " + System.getProperty("env"));
+        System.out.println("Base URL: " + ConfigManager.get("base.url"));
         AllureAttachmentUtil.attachJson("Response Body", response.asPrettyString());
         AllureAttachmentUtil.attachText("Status Code", String.valueOf(response.getStatusCode()));
     }
