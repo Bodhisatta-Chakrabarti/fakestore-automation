@@ -25,6 +25,8 @@ public class DriverFactory {
                 if (headless)
                 {
                     chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
                 }
                 driver.set(new ChromeDriver(chromeOptions));
                 break;
@@ -34,6 +36,8 @@ public class DriverFactory {
                 if (headless)
                 {
                     firefoxOptions.addArguments("--headless=new");
+                    firefoxOptions.addArguments("--no-sandbox");
+                    firefoxOptions.addArguments("--disable-dev-shm-usage");
                 }
                 driver.set(new FirefoxDriver(firefoxOptions));
                 break;
