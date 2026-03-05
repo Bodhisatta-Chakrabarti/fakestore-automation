@@ -28,7 +28,7 @@ public class LoginSteps {
     @Then("I should see logged in message")
     public void i_should_see_logged_in_message()
     {
-        //Assert.assertTrue(loginPage.isUserLoggedIn(), "User is not logged in!");
-        Assert.assertFalse(loginPage.isUserLoggedIn());
+        Assert.assertTrue(loginPage.isUserLoggedIn(), "User is not logged in!");
+        //Assert.assertFalse(loginPage.isUserLoggedIn());
     }
 }
