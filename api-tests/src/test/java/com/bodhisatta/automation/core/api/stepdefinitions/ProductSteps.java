@@ -19,6 +19,7 @@ public class ProductSteps extends BaseAPI {
     {
         //response=request.get(endpoint);
         response= RestAssured.given().baseUri(ConfigManager.get("base.url"))
+                .header("User-Agent", "Mozilla/5.0").header("Accept", "application/json")
                 .header("Content-Type", "application/json").when().get(endpoint).then().extract()
                         .response();
         System.out.println("ENV: " + System.getProperty("env"));
