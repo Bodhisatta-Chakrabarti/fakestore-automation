@@ -5,12 +5,16 @@ import com.bodhisatta.automation.core.api.utils.reporting.AllureAttachmentUtil;
 import com.bodhisatta.automation.core.api.utils.validation.ResponseValidator;
 import com.bodhisatta.automation.core.config.ConfigManager;
 import com.bodhisatta.automation.core.utils.SchemaValidator;
+import com.bodhisatta.automation.core.utils.logging.LogManagerUtil;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apache.logging.log4j.Logger;
 
 public class ProductSteps extends BaseAPI {
+
+    private static final Logger logger= LogManagerUtil.getLogger(ProductSteps.class);
 
     private Response response;
 
@@ -18,12 +22,17 @@ public class ProductSteps extends BaseAPI {
     public void sendGetRequest(String endpoint)
     {
         //response=request.get(endpoint);
+
+        logger.info("Sending GET request to endpoint: {}", endpoint);
+
         response= RestAssured.given().baseUri(ConfigManager.get("base.url"))
                 .header("User-Agent", "Mozilla/5.0").header("Accept", "application/json")
                 .header("Content-Type", "application/json").when().get(endpoint).then().extract()
                         .response();
-        System.out.println("ENV: " + System.getProperty("env"));
-        System.out.println("Base URL: " + ConfigManager.get("base.url"));
+//        System.out.println("ENV: " + System.getProperty("env"));
+//        System.out.println("Base URL: " + ConfigManager.get("base.url"));
+        logger.info("Response status code: {}", response.getStatusCode());
+
         AllureAttachmentUtil.attachJson("Response Body", response.asPrettyString());
         AllureAttachmentUtil.attachText("Status Code", String.valueOf(response.getStatusCode()));
     }

@@ -1,0 +1,3 @@
+2026-03-05 20:32:17 [TestNG-PoolService-1] INFO  com.bodhisatta.automation.ui.hooks.Hooks - Starting UI test execution
+2026-03-05 20:32:17 [TestNG-PoolService-1] INFO  com.bodhisatta.automation.core.driver.DriverFactory - Initializing browser: chrome
+2026-03-05 20:32:19 [TestNG-PoolService-1] INFO  com.bodhisatta.automation.core.driver.DriverFactory - Launching chrome browser

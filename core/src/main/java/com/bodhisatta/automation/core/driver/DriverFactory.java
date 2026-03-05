@@ -1,7 +1,9 @@
 package com.bodhisatta.automation.core.driver;
 
 import com.bodhisatta.automation.core.config.ConfigManager;
+import com.bodhisatta.automation.core.utils.logging.LogManagerUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,10 +13,12 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class DriverFactory {
 
     private static final ThreadLocal<WebDriver> driver=new ThreadLocal<>();
+    private static final Logger logger= LogManagerUtil.getLogger(DriverFactory.class);
 
     public static void initDriver()
     {
         String browser= ConfigManager.get("browser");
+        logger.info("Initializing browser: {}", browser);
         boolean headless=Boolean.parseBoolean(ConfigManager.get("headless"));
 
         switch (browser.toLowerCase())
@@ -30,6 +34,7 @@ public class DriverFactory {
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--window-size=1920,1080");
                 }
+                logger.info("Launching chrome browser");
                 driver.set(new ChromeDriver(chromeOptions));
                 break;
             case "firefox":
@@ -41,6 +46,7 @@ public class DriverFactory {
                     firefoxOptions.addArguments("--no-sandbox");
                     firefoxOptions.addArguments("--disable-dev-shm-usage");
                 }
+                logger.info("Launching firefox browser");
                 driver.set(new FirefoxDriver(firefoxOptions));
                 break;
             default:
