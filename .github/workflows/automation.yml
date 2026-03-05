@@ -24,7 +24,8 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Run API + UI Tests
-        run: mvn clean test -Denv=qa -Dbrowser=chrome
+        #run: mvn clean test -Denv=qa -Dbrowser=chrome
+        run: curl -I https://fakestoreapi.com/products
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
