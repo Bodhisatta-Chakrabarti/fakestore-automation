@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/products/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": 1,
+      "title": "Mock Product 1",
+      "price": 10.5
+    }
+  }
+}

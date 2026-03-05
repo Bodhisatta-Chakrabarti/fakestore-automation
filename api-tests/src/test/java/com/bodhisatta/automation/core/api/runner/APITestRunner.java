@@ -1,8 +1,10 @@
 package com.bodhisatta.automation.core.api.runner;
 
+import com.bodhisatta.automation.core.api.utils.WireMockServerManager;
 import com.bodhisatta.automation.core.utils.reporting.AllureEnvironmentWriterAPI;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
@@ -21,6 +23,9 @@ public class APITestRunner extends AbstractTestNGCucumberTests {
         @BeforeSuite
         public void setupEnvironment()
         {
+                //Start mock server
+                WireMockServerManager.startServer();
+
                 System.out.println("user.dir = " + System.getProperty("user.dir"));
                 AllureEnvironmentWriterAPI.writeEnvironmentFile();
         }
@@ -31,5 +36,11 @@ public class APITestRunner extends AbstractTestNGCucumberTests {
         public Object[][] scenarios()
         {
                 return super.scenarios();
+        }
+
+        @AfterSuite
+        public void stopMockServer()
+        {
+                WireMockServerManager.stopServer();
         }
 }
