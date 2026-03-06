@@ -2,3 +2,19 @@
 2026-03-05 20:32:13 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
 2026-03-05 20:32:13 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products/1
 2026-03-05 20:32:14 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-05 22:25:02 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products
+2026-03-05 22:25:05 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-05 22:25:05 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products/1
+2026-03-05 22:25:06 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:07:03 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products
+2026-03-06 12:07:05 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:07:05 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products/1
+2026-03-06 12:07:06 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:08:52 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products
+2026-03-06 12:08:54 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:08:54 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products/1
+2026-03-06 12:08:56 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:12:05 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products
+2026-03-06 12:12:10 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200
+2026-03-06 12:12:10 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Sending GET request to endpoint: /products/1
+2026-03-06 12:12:11 [TestNG-test-Surefire test-1] INFO  com.bodhisatta.automation.core.api.stepdefinitions.ProductSteps - Response status code: 200

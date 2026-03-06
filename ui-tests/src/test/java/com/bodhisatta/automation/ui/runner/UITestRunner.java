@@ -1,10 +1,12 @@
 package com.bodhisatta.automation.ui.runner;
 
 import com.bodhisatta.automation.core.utils.reporting.AllureEnvironmentWriterUI;
+import com.bodhisatta.automation.core.utils.retry.RetryListener;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 
 @CucumberOptions(
         features = "src/test/resources/features",
@@ -16,6 +18,7 @@ import org.testng.annotations.DataProvider;
         },
         monochrome = true
 )
+@Listeners(RetryListener.class)
 public class UITestRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite

@@ -11,6 +11,7 @@ public class ResponseValidator {
     public static void validateStatusCode(Response response, int expectedStatus)
     {
         Assert.assertEquals(response.getStatusCode(), expectedStatus, "Unexpected status code!");
+        //Assert.assertEquals(response.getStatusCode(), 500);
     }
 
     @Step("Validate response time is under {maxResponseTime} ms")
