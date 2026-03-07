@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/products",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.title"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "create-product-success.json"
+  }
+}

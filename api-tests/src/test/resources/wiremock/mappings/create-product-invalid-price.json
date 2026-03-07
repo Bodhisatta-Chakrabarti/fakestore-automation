@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/products",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.price"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "error": "Invalid price"
+    }
+  }
+}

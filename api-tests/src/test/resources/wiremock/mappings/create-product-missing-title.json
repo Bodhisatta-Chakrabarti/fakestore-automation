@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/products",
+    "bodyPatterns": [
+      {
+        "doesNotMatchJsonPath": "$.title"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "error": "Title is required"
+    }
+  }
+}

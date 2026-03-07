@@ -1,0 +1,8 @@
+{
+  "id": 21,
+  "title": "Test Product",
+  "price": 10.5,
+  "description": "Automation Test Product",
+  "category": "electronics",
+  "image": "https://i.pravatar.cc"
+}
