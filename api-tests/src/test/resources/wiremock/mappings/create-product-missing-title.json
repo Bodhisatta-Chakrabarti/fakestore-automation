@@ -4,7 +4,7 @@
     "url": "/products",
     "bodyPatterns": [
       {
-        "doesNotMatchJsonPath": "$.title"
+        "matchesJsonPath": "$[?(!@.title)]"
       }
     ]
   },
@@ -12,6 +12,9 @@
     "status": 400,
     "jsonBody": {
       "error": "Title is required"
+    },
+    "headers": {
+      "Content-Type": "application/json"
     }
   }
 }

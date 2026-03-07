@@ -4,7 +4,7 @@
     "url": "/products",
     "bodyPatterns": [
       {
-        "matchesJsonPath": "$.price"
+        "matchesJsonPath": "$[?(@.price < 0)]"
       }
     ]
   },
@@ -12,6 +12,9 @@
     "status": 400,
     "jsonBody": {
       "error": "Invalid price"
+    },
+    "headers": {
+      "Content-Type": "application/json"
     }
   }
 }
