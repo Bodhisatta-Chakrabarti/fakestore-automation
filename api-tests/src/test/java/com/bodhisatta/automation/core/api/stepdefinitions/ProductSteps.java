@@ -1,6 +1,8 @@
 package com.bodhisatta.automation.core.api.stepdefinitions;
 
 import com.bodhisatta.automation.core.api.BaseAPI;
+import com.bodhisatta.automation.core.api.constants.ApiEndpoints;
+import com.bodhisatta.automation.core.api.testdata.ProductDataBuilder;
 import com.bodhisatta.automation.core.api.utils.reporting.AllureAttachmentUtil;
 import com.bodhisatta.automation.core.api.utils.validation.ResponseValidator;
 import com.bodhisatta.automation.core.config.ConfigManager;
@@ -11,6 +13,8 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
 
 public class ProductSteps extends BaseAPI {
 
@@ -35,6 +39,30 @@ public class ProductSteps extends BaseAPI {
 
         AllureAttachmentUtil.attachJson("Response Body", response.asPrettyString());
         AllureAttachmentUtil.attachText("Status Code", String.valueOf(response.getStatusCode()));
+    }
+
+    @When("I create a new product")
+    public void createProduct()
+    {
+        Map<String, Object> payload= ProductDataBuilder.createProductPayload();
+
+        response=request.body(payload).post(ApiEndpoints.PRODUCTS);
+    }
+
+    @When("I create a product without title")
+    public void createProductWithoutTitle()
+    {
+        Map<String, Object> payload= ProductDataBuilder.createProductWithoutTitle();
+
+        response=request.body(payload).post(ApiEndpoints.PRODUCTS);
+    }
+
+    @When("I create a product with invalid price")
+    public void createProductWithInvalidPrice()
+    {
+        Map<String, Object> payload= ProductDataBuilder.createProductWithInvalidPrice();
+
+        response=request.body(payload).post(ApiEndpoints.PRODUCTS);
     }
 
     @Then("the response status should be {int}")
