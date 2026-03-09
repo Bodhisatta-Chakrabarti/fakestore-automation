@@ -1,36 +1,46 @@
 package com.bodhisatta.automation.core.api.testdata;
 
+import com.bodhisatta.automation.core.api.utils.testdata.FakerUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProductDataBuilder {
 
-    public static Map<String, Object> createProductPayload()
+    private Map<String, Object> product;
+
+    public ProductDataBuilder()
     {
-        Map<String, Object> product=new HashMap<>();
+        product=new HashMap<>();
 
-        product.put("title", "Test Product");
-        product.put("price", 10.5);
-        product.put("description", "Automation Test Product");
-        product.put("image", "https://i.pravatar.cc");
-        product.put("category", "electronics");
+        product.put("title", FakerUtils.getProductName());
+        product.put("price", FakerUtils.getPrice());
+        product.put("description", FakerUtils.getDescription());
+        product.put("image", FakerUtils.getImageUrl());
+        product.put("category", FakerUtils.getCategory());
 
-        return product;
     }
 
-    public static Map<String, Object> createProductWithoutTitle()
+    public ProductDataBuilder withTitle(String title)
     {
-        Map<String, Object> product=createProductPayload();
+        product.put("title", title);
+        return this;
+    }
+
+    public ProductDataBuilder withPrice(double price)
+    {
+        product.put("price", price);
+        return this;
+    }
+
+    public ProductDataBuilder withoutTitle()
+    {
         product.remove("title");
-
-        return product;
+        return this;
     }
 
-    public static Map<String, Object> createProductWithInvalidPrice()
+    public Map<String, Object> build()
     {
-        Map<String, Object> product=createProductPayload();
-        product.put("price", -10);
-
         return product;
     }
 

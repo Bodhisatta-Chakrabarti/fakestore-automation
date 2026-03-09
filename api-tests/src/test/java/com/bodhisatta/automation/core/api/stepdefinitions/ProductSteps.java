@@ -44,7 +44,7 @@ public class ProductSteps extends BaseAPI {
     @When("I create a new product")
     public void createProduct()
     {
-        Map<String, Object> payload= ProductDataBuilder.createProductPayload();
+        Map<String, Object> payload=new ProductDataBuilder().build();
 
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
     }
@@ -52,7 +52,7 @@ public class ProductSteps extends BaseAPI {
     @When("I create a product without title")
     public void createProductWithoutTitle()
     {
-        Map<String, Object> payload= ProductDataBuilder.createProductWithoutTitle();
+        Map<String, Object> payload=new ProductDataBuilder().withoutTitle().build();
 
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
     }
@@ -60,7 +60,7 @@ public class ProductSteps extends BaseAPI {
     @When("I create a product with invalid price")
     public void createProductWithInvalidPrice()
     {
-        Map<String, Object> payload= ProductDataBuilder.createProductWithInvalidPrice();
+        Map<String, Object> payload=new ProductDataBuilder().withPrice(-10).build();
 
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
     }
