@@ -3,6 +3,7 @@ package com.bodhisatta.automation.core.api.stepdefinitions;
 import com.bodhisatta.automation.core.api.BaseAPI;
 import com.bodhisatta.automation.core.api.constants.ApiEndpoints;
 import com.bodhisatta.automation.core.api.testdata.ProductDataBuilder;
+import com.bodhisatta.automation.core.api.utils.logging.ApiLogger;
 import com.bodhisatta.automation.core.api.utils.reporting.AllureAttachmentUtil;
 import com.bodhisatta.automation.core.api.utils.validation.ResponseValidator;
 import com.bodhisatta.automation.core.config.ConfigManager;
@@ -46,7 +47,11 @@ public class ProductSteps extends BaseAPI {
     {
         Map<String, Object> payload=new ProductDataBuilder().build();
 
+        ApiLogger.logRequest("/products", payload);
+
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
+
+        ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
     }
 
     @When("I create a product without title")
@@ -62,7 +67,11 @@ public class ProductSteps extends BaseAPI {
     {
         Map<String, Object> payload=new ProductDataBuilder().withPrice(-10).build();
 
+        ApiLogger.logRequest("/products", payload);
+
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
+
+        ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
     }
 
     @Then("the response status should be {int}")
