@@ -20,3 +20,7 @@ Feature: Product API Testing
   Scenario: Create product with invalid price
     When I create a product with invalid price
     Then the response status should be 400
+
+  Scenario: Create products using data-driven testing
+    When I create products from test data "data/products.json"
+    Then the response status should be 200

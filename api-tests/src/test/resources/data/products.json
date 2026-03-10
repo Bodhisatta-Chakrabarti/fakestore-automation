@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Laptop",
+    "price": 1200,
+    "description": "Gaming laptop",
+    "category": "electronics",
+    "image": "https://i.pravatar.cc"
+  },
+  {
+    "title": "Headphones",
+    "price": 150,
+    "description": "Noise cancelling",
+    "category": "electronics",
+    "image": "https://i.pravatar.cc"
+  },
+  {
+    "title": "Shoes",
+    "price": 80,
+    "description": "Running shoes",
+    "category": "fashion",
+    "image": "https://i.pravatar.cc"
+  }
+]

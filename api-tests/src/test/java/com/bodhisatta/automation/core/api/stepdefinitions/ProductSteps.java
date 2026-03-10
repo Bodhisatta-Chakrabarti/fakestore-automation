@@ -5,6 +5,7 @@ import com.bodhisatta.automation.core.api.constants.ApiEndpoints;
 import com.bodhisatta.automation.core.api.testdata.ProductDataBuilder;
 import com.bodhisatta.automation.core.api.utils.logging.ApiLogger;
 import com.bodhisatta.automation.core.api.utils.reporting.AllureAttachmentUtil;
+import com.bodhisatta.automation.core.api.utils.testdata.JsonDataReader;
 import com.bodhisatta.automation.core.api.utils.validation.ResponseValidator;
 import com.bodhisatta.automation.core.config.ConfigManager;
 import com.bodhisatta.automation.core.utils.SchemaValidator;
@@ -15,6 +16,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.Map;
 
 public class ProductSteps extends BaseAPI {
@@ -72,6 +74,21 @@ public class ProductSteps extends BaseAPI {
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
 
         ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
+    }
+
+    @When("I create products from test data {string}")
+    public void createProductsFromTestData(String fileName)
+    {
+        List<Map<String, Object>> products= JsonDataReader.getTestData(fileName);
+
+        for (Map<String, Object> product:products)
+        {
+            ApiLogger.logRequest("/products", product);
+
+            response=request.body(product).post(ApiEndpoints.PRODUCTS);
+
+            ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
+        }
     }
 
     @Then("the response status should be {int}")
