@@ -91,6 +91,18 @@ public class ProductSteps extends BaseAPI {
         }
     }
 
+    @When("I create a product from {string} with index {int}")
+    public void createProductFromTestData(String fileName, int index)
+    {
+        Map<String, Object> product=JsonDataReader.getTestDataByIndex(fileName, index);
+
+        ApiLogger.logRequest("/products", product);
+
+        response=request.body(product).post(ApiEndpoints.PRODUCTS);
+
+        ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
+    }
+
     @Then("the response status should be {int}")
     public void verifyStatusCode(int statusCode)
     {

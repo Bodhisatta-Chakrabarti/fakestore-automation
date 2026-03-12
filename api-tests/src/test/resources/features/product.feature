@@ -24,3 +24,13 @@ Feature: Product API Testing
   Scenario: Create products using data-driven testing
     When I create products from test data "data/products.json"
     Then the response status should be 200
+
+  Scenario Outline: Create product using external data
+    When I create a product from "data/products.json" with index <index>
+    Then the response status should be 200
+
+    Examples:
+    | index |
+    | 0 |
+    | 1 |
+    | 2 |

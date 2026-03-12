@@ -23,4 +23,16 @@ public class JsonDataReader {
             throw new RuntimeException("Failed to read test data file: " + fileName);
         }
     }
+
+    public static Map<String, Object> getTestDataByIndex(String fileName, int index)
+    {
+        List<Map<String, Object>> data=getTestData(fileName);
+
+        if (index>=data.size())
+        {
+            throw new RuntimeException("No test data available for index: " + index);
+        }
+
+        return data.get(index);
+    }
 }
