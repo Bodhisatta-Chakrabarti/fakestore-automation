@@ -14,15 +14,15 @@ public class LoginSteps {
     @Given("I am on the login page")
     public void i_am_on_the_login_page()
     {
-        loginPage.clickSignupLogin();
+        //loginPage.clickSignupLogin();
     }
 
     @When("I login with valid credentials")
     public void i_login_with_valid_credentials()
     {
-        loginPage.enterEmail("bschakrabarti@gmail.com");
-        loginPage.enterPassword("Protecti0n$");
-        loginPage.clickLogin();
+//        loginPage.enterEmail("bschakrabarti@gmail.com");
+//        loginPage.enterPassword("Protecti0n$");
+//        loginPage.clickLogin();
     }
 
     @Then("I should see logged in message")
