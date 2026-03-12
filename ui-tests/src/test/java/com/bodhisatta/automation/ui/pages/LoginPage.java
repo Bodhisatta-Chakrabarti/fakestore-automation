@@ -2,6 +2,11 @@ package com.bodhisatta.automation.ui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -40,6 +45,11 @@ public class LoginPage {
 
     public boolean isUserLoggedIn()
     {
-        return driver.findElement(loggedInText).isDisplayed();
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement loggedInElement=wait.until(ExpectedConditions.visibilityOfElementLocated(loggedInText));
+
+        //return driver.findElement(loggedInText).isDisplayed();
+        return loggedInElement.isDisplayed();
     }
 }
