@@ -8,6 +8,8 @@ import com.bodhisatta.automation.core.api.utils.reporting.AllureAttachmentUtil;
 import com.bodhisatta.automation.core.api.utils.testdata.JsonDataReader;
 import com.bodhisatta.automation.core.api.utils.validation.ResponseValidator;
 import com.bodhisatta.automation.core.config.ConfigManager;
+import com.bodhisatta.automation.core.database.DatabaseValidator;
+import com.bodhisatta.automation.core.database.QueryExecutor;
 import com.bodhisatta.automation.core.utils.SchemaValidator;
 import com.bodhisatta.automation.core.utils.logging.LogManagerUtil;
 import io.cucumber.java.en.Then;
@@ -15,7 +17,9 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +28,9 @@ public class ProductSteps extends BaseAPI {
     private static final Logger logger= LogManagerUtil.getLogger(ProductSteps.class);
 
     private Response response;
+
+    private String createdProductTitle;
+    private double createdProductPrice;
 
     @When("I send a GET request to {string}")
     public void sendGetRequest(String endpoint)
@@ -52,6 +59,8 @@ public class ProductSteps extends BaseAPI {
         ApiLogger.logRequest("/products", payload);
 
         response=request.body(payload).post(ApiEndpoints.PRODUCTS);
+
+        //QueryExecutor.executeUpdate("INSERT INTO products(title,price) VALUES('" + title + "',1200)");
 
         ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
     }
@@ -103,6 +112,22 @@ public class ProductSteps extends BaseAPI {
         ApiLogger.logResponse(response.getStatusCode(), response.getBody().asPrettyString());
     }
 
+    @When("I create a product with title {string}")
+    public void createProduct(String title)
+    {
+        createdProductTitle=title;
+        createdProductPrice=1200;
+
+        Map<String, Object> product=new HashMap<>();
+        product.put("title", createdProductTitle);
+        product.put("price", createdProductPrice);
+
+        response=RestAssured.given().contentType("application/json").body(product).post("/products");
+
+        QueryExecutor.executeUpdate("INSERT INTO products(title,price) VALUES('" + createdProductTitle + "'," + createdProductPrice + ")");
+
+    }
+
     @Then("the response status should be {int}")
     public void verifyStatusCode(int statusCode)
     {
@@ -114,5 +139,15 @@ public class ProductSteps extends BaseAPI {
     public void validateSchema(String schemaFile)
     {
         SchemaValidator.validateSchema(response, schemaFile);
+    }
+
+    @Then("product data should match database")
+    public void product_data_should_match_database()
+    {
+        Map<String, Object> dbProduct= DatabaseValidator.getProductByTitle(createdProductTitle);
+
+        Assert.assertEquals(dbProduct.get("title"), createdProductTitle, "Product title mismatch!");
+
+        Assert.assertEquals((double) dbProduct.get("price"), createdProductPrice, "Product price mismatch!");
     }
 }

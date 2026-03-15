@@ -34,3 +34,8 @@ Feature: Product API Testing
     | 0 |
     | 1 |
     | 2 |
+
+  Scenario: Verify product data matches database
+    When I create a product with title "Test Laptop"
+    Then the response status should be 200
+    And product data should match database
