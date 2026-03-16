@@ -160,6 +160,34 @@
                     <version>2.12.0</version>
                 </plugin>
 
+                <plugin>
+                    <groupId>com.lazerycode.jmeter</groupId>
+                    <artifactId>jmeter-maven-plugin</artifactId>
+                    <version>3.6.0</version>
+
+                    <executions>
+                        <execution>
+                            <id>performance-tests</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jmeter</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+
+                    <configuration>
+
+                        <testFilesDirectory>performance-tests/jmeter</testFilesDirectory>
+
+                        <testFilesIncluded>
+                            <jMeterTestFile>product_load_test.jmx</jMeterTestFile>
+                        </testFilesIncluded>
+
+                        <generateReports>true</generateReports>
+
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>
